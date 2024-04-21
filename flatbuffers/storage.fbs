@@ -1,0 +1,16 @@
+namespace Hiveprint;
+
+enum FileProtocol:byte { LOCALE = 0, NFS, SMB = 2 }
+
+table Storage {
+  name:string;
+  description:string;
+  hostname:string;
+  user:string;
+  password:string;
+  protocol:FileProtocol;
+  protocol_major_version:short;
+  protocol_minor_version:short;
+}
+
+root_type Storage;

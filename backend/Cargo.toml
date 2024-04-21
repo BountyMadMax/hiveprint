@@ -1,0 +1,18 @@
+[package]
+name = "hiveforge"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+hyper = "1.2"
+bb8 = "0.8"
+diesel = { version = "2", features = ["postgres_backend", "ipnet-address"] }
+diesel-async = { version = "0.4", features = ["postgres", "bb8"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenvy = "0.15"
