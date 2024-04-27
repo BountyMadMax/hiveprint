@@ -17,3 +17,9 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 dotenvy = "0.15"
 ipnet = "2.9"
+prost = "0.12"
+prost-types = "0.12"
+bytes = "1.6"
+
+[build-dependencies]
+prost-build = { version = "0.12" }

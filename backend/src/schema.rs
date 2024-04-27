@@ -7,6 +7,7 @@ diesel::table! {
         description -> Nullable<Text>,
         hostname -> Nullable<Varchar>,
         ip -> Nullable<Inet>,
+        path -> Nullable<Text>,
         user -> Nullable<Varchar>,
         password -> Nullable<Varchar>,
         protocol -> Nullable<Int2>,
