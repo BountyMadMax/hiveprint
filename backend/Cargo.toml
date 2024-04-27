@@ -11,8 +11,9 @@ axum = "0.7"
 tokio = { version = "1", features = ["full"] }
 hyper = "1.2"
 bb8 = "0.8"
-diesel = { version = "2", features = ["postgres_backend", "ipnet-address"] }
+diesel = { version = "2", features = ["postgres", "postgres_backend", "ipnet-address"] }
 diesel-async = { version = "0.4", features = ["postgres", "bb8"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 dotenvy = "0.15"
+ipnet = "2.9"
