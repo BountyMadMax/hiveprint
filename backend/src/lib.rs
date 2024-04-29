@@ -5,13 +5,11 @@ use diesel::prelude::*;
 use dotenvy::dotenv;
 use std::env;
 
-pub mod hiveprint {
-  pub mod storage {
-    include!(concat!(env!("OUT_DIR"), "/hiveprint.storage.rs"));
-  }
+pub mod storage {
+  include!(concat!(env!("OUT_DIR"), "/storage.rs"));
 }
 
-use hiveprint::storage::*;
+use storage::*;
 
 /* pub fn create_storage_new() -> storage_new::Storage {
   let mut st = storage_new::Storage::default();

@@ -29,5 +29,5 @@ async fn get_storage(Path(id): Path<i32>) {
     let connection = &mut establish_connection();
     let storage = hiveprint::load_storage(connection, id);
     let mut buf = vec![];
-    hiveprint::hiveprint::storage::Storage::encode(&storage, &mut buf).expect("Could not encode storage")
+    hiveprint::storage::Storage::encode(&storage, &mut buf).expect("Could not encode storage")
 }
