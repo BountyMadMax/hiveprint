@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package hiveprint.storage;
 
+// Storage model.
 message Storage {
   int32 id = 1;
   string name = 2;
@@ -12,11 +13,28 @@ message Storage {
   optional string user = 7;
   optional string password = 8;
   optional Protocol protocol = 9;
-  optional string protocol_version = 10;
+  optional ProtocolVersion protocol_version = 10;
 
   enum Protocol {
     PROTOCOL_LOCALE = 0;
     PROTOCOL_NFS = 1;
     PROTOCOL_SMB = 2;
-  }  
+  }
+  enum ProtocolVersion {
+    PROTOCOL_VERSION_1 = 0;
+    PROTOCOL_VERSION_2 = 1;
+    PROTOCOL_VERSION_3 = 2;
+    PROTOCOL_VERSION_4 = 3;
+    PROTOCOL_VERSION_5 = 4;
+  }
+}
+
+message StorageQuery {
+  int32 limit = 1;
+  int32 offset = 2;
+  // TODO: Filter.
+}
+
+message StorageQueryResponse {
+  repeated Storage results = 1;
 }
