@@ -34,7 +34,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.0.17",
-		"flatbuffers": "^24.3.25",
-		"google-protobuf": "^3.21.2"
+		"protobufjs": "~7.2.6",
+		"protobufjs-cli": "~1.1.2"
 	}
 }
