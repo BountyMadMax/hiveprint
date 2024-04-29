@@ -1,5 +1,6 @@
 <script>
   import '@fontsource-variable/inter';
+  import '$lib/styles/app.css';
 
   const { children } = $props();
 </script>
