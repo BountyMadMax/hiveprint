@@ -18,8 +18,8 @@
   );
 </script>
 
-<div class='w-full my-2 flex justify-between'>
-  <span class='flex'>
+<div class='w-full my-4 flex justify-between flex-col sm:flex-row gap-2'>
+  <span class='flex m-auto'>
     <Link href={`${route}?page=0`} active={currentPage > 0} current={false} class='rounded-s-md'>
       <ChevronsLeft class='h-4'/>
     </Link>
@@ -44,7 +44,7 @@
     </Link>
   </span>
 
-  <span class='text-sm flex items-center'>
+  <span class='text-sm flex items-center m-auto sm:m-0'>
     Total:
     {count}
   </span>

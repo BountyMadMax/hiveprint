@@ -18,7 +18,7 @@
   </header>
   
   <div class='flex pt-16 h-dvh'>
-    <aside class='min-w-60 bg-slate-200 dark:bg-slate-800'>
+    <aside class='hidden md:block md:min-w-60 bg-slate-200 dark:bg-slate-800'>
       <nav class='h-full flex flex-col justify-between'>
         <ul>
           <NavbarGroup href='/storage'>

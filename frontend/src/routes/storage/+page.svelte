@@ -35,7 +35,7 @@
   <h1 class='font-bold text-3xl my-4'>Storages</h1>
   
   <List {columns} {rows} {onSortChange}/>
-  <Paginator count={100} amount={10} currentPage={9} route={$page.route.id ?? '/'}/>
+  <Paginator count={100} amount={10} currentPage={0} route={$page.route.id ?? '/'}/>
 </div>
 
 <!-- <table class='w-full border-collapse border border-slate-300 dark:border-slate-700'>
