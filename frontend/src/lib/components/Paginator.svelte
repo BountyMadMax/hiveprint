@@ -29,7 +29,7 @@
 
     {#each pageNumbers as pageNumber}
 
-      <Link href={`${route}?page=${pageNumber}`} active class='' current={currentPage === pageNumber}>
+      <Link href={`${route}?page=${pageNumber}`} active current={currentPage === pageNumber}>
         <!-- pageNumber starts at 0, but normal user start at 1 -->
         {pageNumber + 1}
       </Link>
