@@ -9,4 +9,9 @@ export default defineNuxtConfig({
     },
   },
   alias: { "models": "../models" },
+  app: {
+    head: {
+      link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }]
+    }
+  }
 })

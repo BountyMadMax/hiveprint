@@ -1,5 +1,9 @@
 <script setup>
 import { Database, Settings } from 'lucide-vue-next';
+
+useHead({
+  title: 'HivePrint',
+})
 </script>
 
 <template>
