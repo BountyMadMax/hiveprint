@@ -35,7 +35,7 @@ useHead({
               <span>Settings</span>
             </NavbarItem>
           </ul>
-          <div class="p-2 text-center">
+          <div class="p-2 text-center text-sm">
             <div>0.1.0</div>
             <div>Made with love</div>
           </div>
