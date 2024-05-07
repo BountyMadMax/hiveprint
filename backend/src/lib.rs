@@ -1,5 +1,6 @@
 pub mod schema;
 pub mod ws;
+pub mod controller;
 
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
@@ -82,7 +83,7 @@ pub fn load_storage(connection: &mut PgConnection, id: i32) -> Storage {
   storages.find(id).first(connection).expect("Error finding storage")
 }
 
-pub fn query_storages(connection: &mut PgConnection, query: &StorageQuery) -> StorageQueryResponse {
+/* pub fn query_storages(connection: &mut PgConnection, query: &StorageQuery) -> StorageQueryResponse {
   use crate::schema::storages::dsl::*;
 
   let results = storages
@@ -93,4 +94,4 @@ pub fn query_storages(connection: &mut PgConnection, query: &StorageQuery) -> St
     .expect("Error loading storages");
 
   StorageQueryResponse { results }
-}
+} */

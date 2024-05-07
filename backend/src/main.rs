@@ -2,7 +2,8 @@ use axum::{
     extract::Path, routing::{get, post}, Router
 };
 use hiveprint::establish_connection;
-use tower_http::trace::{DefaultMakeSpan, TraceLayer};
+use http::Method;
+use tower_http::{cors::{Any, CorsLayer}, trace::{DefaultMakeSpan, TraceLayer}};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 use prost::Message;
 
@@ -20,8 +21,13 @@ async fn main() {
         .route("/ws", get(hiveprint::ws::handler::ws_handler))
         .route("/", get(|| async { "Hello, World!" }))
         .route("/storage", post(create_storage))
-        .route("/storage", get(show_storages))
+        .route("/storage", get(hiveprint::controller::storage::get_storages))
         .route("/storage/:id", get(get_storage))
+        .layer(
+            CorsLayer::new()
+                .allow_methods(vec![Method::GET])
+                .allow_origin(Any)
+        )
         .layer(
             TraceLayer::new_for_http()
                 .make_span_with(DefaultMakeSpan::default().include_headers(true)),
@@ -36,9 +42,6 @@ async fn create_storage() {
     let connection = &mut establish_connection();
 
     //hiveprint::create_storage(connection, &String::from("First storage"));
-}
-
-async fn show_storages() {
 }
 
 async fn get_storage(Path(id): Path<i32>) {

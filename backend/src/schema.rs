@@ -2,7 +2,7 @@
 
 diesel::table! {
     storages (id) {
-        id -> Serial,
+        id -> Int4,
         name -> Varchar,
         description -> Nullable<Text>,
         hostname -> Nullable<Varchar>,
