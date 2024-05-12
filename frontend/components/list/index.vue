@@ -30,7 +30,6 @@ let selectedColumns = ref([]);
 </script>
 
 <template>
-  {{ selectedColumns }}
   <div v-bind="$attrs">
     <div class="w-full my-2 gap-2 flex justify-end">
       <span v-if="showSizeChanger" class="border rounded-md dark:border-slate-500">
