@@ -6,7 +6,7 @@ let rows = ref([]);
 // Use slice as a dirty workaround to remove toJSON.
 const columnsAvailable = Object.keys(StorageProto.Storage.prototype)
   .slice(0, -1)
-  .map((column) => { return { label: column, value: column } });
+  .map((column) => { return { label: column, value: column, sortable: column == 'name' || column == 'hostname' } });
 
 useHead({
   title: 'Storages | HivePrint',

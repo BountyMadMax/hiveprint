@@ -1,5 +1,5 @@
 <script setup>
-import { RotateCw, Settings } from 'lucide-vue-next';
+import { ChevronDown, ChevronsUpDown, ChevronUp, RotateCw, Settings } from 'lucide-vue-next';
 
 const props = defineProps({
   columns: Array,
@@ -16,7 +16,9 @@ const props = defineProps({
 
 const rowColumns = computed(() => props.columnsAvailable?.map((column) => column.value));
 
-let pageSize = ref(25);
+const selectedColumns = ref(['name', 'hostname', 'ip']);
+const sort = ref(null);
+const pageSize = ref(25);
 
 /** @param {Number} size */
 function updatePageSize(size) {
@@ -26,7 +28,15 @@ function updatePageSize(size) {
   props.onPageSizeChange(size);
 }
 
-let selectedColumns = ref([]);
+/** @param {String} value */
+function updateSort(value) {
+  if (sort.value === value) {
+    sort.value = `-${value}`;
+  } else {
+    sort.value = value;
+  }
+}
+
 </script>
 
 <template>
@@ -70,8 +80,20 @@ let selectedColumns = ref([]);
     <table class="w-full">
       <thead>
         <tr class="font-semibold text-left">
-          <th v-for="column in columnsAvailable" :key="column.value" v-show="selectedColumns.includes(column.value)" class="border h-10 border-slate-300 dark:border-slate-700 px-2 py-1">
-            {{ column.label }}
+          <th v-for="column in columnsAvailable" :key="column.value" v-show="selectedColumns.includes(column.value)" class="border h-10 border-slate-300 dark:border-slate-700">
+            <button v-if="column.sortable" class="w-full text-left px-2 py-1 flex justify-between" @click="updateSort(column.value)">
+              <span>
+                {{ column.label }}
+              </span>
+              <span>
+                <ChevronDown v-if="sort === column.value"/>
+                <ChevronUp v-else-if="sort === `-${column.value}`"/>
+                <ChevronsUpDown v-else/>
+              </span>
+            </button>
+            <span v-else class="px-2 py-1">
+              {{ column.label }}
+            </span>
           </th>
         </tr>
       </thead>
