@@ -1,8 +1,19 @@
 <script setup>
-  const uid = getCurrentInstance().uid;
+  import { generateUid } from '~/utils/uid';
+
+  const uid = ref(null);
+
+  onMounted(() => {
+    uid.value = generateUid();
+  });
 
   function openDialog() {
-    document.getElementById(uid).showModal();
+    const dialog = document.getElementById(uid.value);
+    if (dialog instanceof HTMLDialogElement) {
+      dialog.showModal();
+    } else {
+      console.warn(`Can not open dialog. Dialog with the uid ${uid.value} not found.`);
+    }
   }
 </script>
 
@@ -12,6 +23,9 @@
   </button>
 
   <Dialog :uid="uid">
+    <template #header>
+      <slot name="header"></slot>
+    </template>
     <slot></slot>
   </Dialog>
 </template>

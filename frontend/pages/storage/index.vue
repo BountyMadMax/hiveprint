@@ -1,9 +1,12 @@
 <script setup>
 import { storage as StorageProto } from '~/models/storage';
 
-const columns = [{ label: 'id', key: 'id' }, { label: 'Hostname', key: 'hostname' }];
+const columns = [{ label: 'id', value: 'id' }, { label: 'Hostname', value: 'hostname' }];
 let rows = ref([]);
-const columnsAvailable = Object.keys(StorageProto.Storage.prototype);
+// Use slice as a dirty workaround to remove toJSON.
+const columnsAvailable = Object.keys(StorageProto.Storage.prototype)
+  .slice(0, -1)
+  .map((column) => { return { label: column, value: column } });
 
 useHead({
   title: 'Storages | HivePrint',
@@ -41,10 +44,10 @@ function loadStorages() {
   <List
     :columns="columns"
     :rows="rows"
-    :columnsAvailable="columnsAvailable"
+    :columns-available="columnsAvailable"
     model-name="storage"
     class="mx-4"
-    :onReload="loadStorages"
-    :onPageSizeChange="loadStorages"
+    :on-reload="loadStorages"
+    :on-page-size-change="loadStorages"
   />
 </template>

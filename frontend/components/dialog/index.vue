@@ -1,10 +1,15 @@
 <script setup>
 import { X } from 'lucide-vue-next';
 
-const props = defineProps({ uid: Number });
+const props = defineProps({ uid: String });
 
 function closeDialog() {
-  document.getElementById(props.uid).close();
+  const dialog = document.getElementById(props.uid);
+  if (dialog instanceof HTMLDialogElement) {
+    dialog.close();
+  } else {
+    console.warn(`Can not close dialog. Dialog with the uid ${props.uid} not found.`);
+  }
 }
 </script>
 
@@ -15,7 +20,7 @@ function closeDialog() {
         <slot name="header"></slot>
       </span>
 
-      <button @click="closeDialog" class="rounded-md py-1 dark:hover:bg-slate-600">
+      <button @click="closeDialog" class="rounded-md p-1 dark:hover:bg-slate-600">
         <X class="h-4"/>
       </button>
     </div>

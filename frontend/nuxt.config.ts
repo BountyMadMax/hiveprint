@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  alias: { "models": "../models" },
+  alias: { "models": "../models", "utils": "../utils" },
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }]
