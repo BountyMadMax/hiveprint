@@ -1,10 +1,16 @@
 {
-  "name": "nuxt-app",
+  "name": "hiveprint",
   "private": true,
   "type": "module",
+  "repository": "https://github.com/BountyMadMax/hiveprint",
+  "author": { "name": "Yannick Melzer", "url": "https://github.com/BountyMadMax" },
+  "license": "GPL-2.0-only",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev -p 5173",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "tsc": "npx nuxi typecheck",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -14,15 +20,24 @@
     "@fontsource-variable/inter": "^5.0.18",
     "lucide-vue-next": "^0.378.0",
     "nuxt": "^3.11.2",
-    "protobufjs": "~7.2.6",
+    "protobufjs": "~7.3.0",
     "socket.io-client": "^4.7.5",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@types/eslint": "^8.56.10",
+    "@types/eslint__js": "^8.42.3",
+    "@types/eslint-config-prettier": "^6.11.3",
     "autoprefixer": "^10.4.19",
+    "eslint": "^9.3.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsdoc": "^48.2.5",
     "postcss": "^8.4.38",
     "protobufjs-cli": "~1.1.2",
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vue-tsc": "^2.0.19"
   }
 }
