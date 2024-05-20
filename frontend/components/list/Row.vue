@@ -1,5 +1,14 @@
 <script setup>
-defineProps({ row: Object, columns: Array, activeColumns: Array, href: String });
+
+/**
+ * @type {{ row: object, columns: string[], activeColumns: string[], href: string }}
+ */
+defineProps([
+  'row',
+  'columns',
+  'activeColumns',
+  'href'
+]);
 </script>
 
 <template>

@@ -1,34 +1,66 @@
 <script setup>
 import { ChevronDown, ChevronsUpDown, ChevronUp, RotateCw, Settings } from 'lucide-vue-next';
 
-const props = defineProps({
-  columns: Array,
-  columnsAvailable: Array,
-  rows: Array,
-  modelName: String,
-  onReload: Function,
-  onPageSizeChange: Function,
-  showSizeChanger: { type: Boolean, default: true },
-  showReload: { type: Boolean, default: true },
-  showSettings: { type: Boolean, default: true },
-  showPagination: { type: Boolean, default: true },
-});
+/**
+ * @typedef Props
+ * @property {import('hp-types').Compontent.List.Columns} columns
+ * @property {import('hp-types').Compontent.List.Columns} columnsAvailable
+ * @property {import('hp-types').Compontent.List.Rows} rows
+ * @property {string} modelName
+ * @property {() => void} onReload
+ * @property {(size: number) => void} onPageSizeChange
+ * @property {boolean} showSizeChanger
+ * @property {boolean} showReload
+ * @property {boolean} showSettings
+ * @property {boolean} showPagination
+ */
+
+/**
+ * @type {Props}
+ */
+// @ts-ignore
+const props = defineProps([
+  'columns',
+  'columnsAvailable',
+  'rows',
+  'modelName',
+  'onReload',
+  'onPageSizeChange',
+  'showSizeChanger',
+  'showReload',
+  'showSettings',
+  'showPagination'
+]);
 
 const rowColumns = computed(() => props.columnsAvailable?.map((column) => column.value));
 
 const selectedColumns = ref(['name', 'hostname', 'ip']);
+/** @type {import('vue').Ref<null|string>} */
 const sort = ref(null);
 const pageSize = ref(25);
 
 /** @param {Number} size */
 function updatePageSize(size) {
   pageSize.value = size;
-  useRouter().push({ path: useRoute().path, query: { page_size: pageSize.value }});
+
+  /** @type {import('vue-router').RouteLocationNormalizedLoaded } */
+  const route = useRoute();
+  /** @type {import('vue-router').LocationQuery&{ page_size?: number }} */
+  let query = route.query;
+
+  if (Object.keys(query).includes('page_size')) {
+    query.page_size = size;
+  } else {
+    // @ts-ignore
+    query = { ...query, page_size: size };
+  }
+  console.log('PUSH', { path: route.path, query });
+  useRouter().push({ path: route.path, query });
   
   props.onPageSizeChange(size);
 }
 
-/** @param {String} value */
+/** @param {string} value */
 function updateSort(value) {
   if (sort.value === value) {
     sort.value = `-${value}`;
@@ -36,7 +68,6 @@ function updateSort(value) {
     sort.value = value;
   }
 }
-
 </script>
 
 <template>
