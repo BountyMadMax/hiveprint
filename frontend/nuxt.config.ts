@@ -10,7 +10,12 @@ export default defineNuxtConfig({
     },
   },
 
-  alias: { "models": "../models", "utils": "../utils" },
+  alias: {
+    "models": "../models",
+    "~/models/*": "../models/*",
+    "utils": "../utils",
+    "hp-types": "../types/index.d.ts"
+  },
 
   app: {
     head: {

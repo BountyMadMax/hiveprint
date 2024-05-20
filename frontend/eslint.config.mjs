@@ -1,6 +1,6 @@
 // @ts-check
 /* import withNuxt from './.nuxt/eslint.config.mjs' */
-/* import eslintConfigPrettier from 'eslint-config-prettier'; */
+import eslintConfigPrettier from 'eslint-config-prettier';
 import js from '@eslint/js';
 import jsdoc from 'eslint-plugin-jsdoc';
 
@@ -11,8 +11,8 @@ import jsdoc from 'eslint-plugin-jsdoc';
 export default [
   js.configs.recommended,
   jsdoc.configs['flat/recommended'],
-  /* eslintConfigPrettier */
+  eslintConfigPrettier,
   {
-    "ignores": [".nuxt/", ".node_modules/"]
+    "ignores": [".nuxt/", ".node_modules/", "models/*.js"]
   }
 ]

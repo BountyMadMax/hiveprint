@@ -2,10 +2,8 @@
   "compilerOptions": {
     "checkJs": true,
     "noEmit": true,
-    "paths": {
-      "hp-types": ["./types/index.d.ts"]
-    }
   },
+  "exclude": ["./models/*.js"],
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
 }
