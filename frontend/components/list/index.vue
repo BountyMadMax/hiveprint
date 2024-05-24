@@ -2,28 +2,31 @@
 import { ChevronDown, ChevronsUpDown, ChevronUp, RotateCw, Settings } from 'lucide-vue-next';
 
 interface Columns {
-  value: string,
-  label: string,
+  /** Computer value */
+  value: string
+  /** Human label */
+  label: string
+  /** Whether the column can be sorted */
   sortable?: boolean
 }
 
 const props = defineProps<{
-  columns: Array<Columns>,
-  rows: Array<{ id: number }>,
-  modelName: string,
-  onReload: () => void,
-  onPageSizeChange: (size: number) => void,
-  showSizeChanger: boolean,
-  showReload: boolean,
-  showSettings: boolean,
-  showPagination: boolean,
+  columns: Array<Columns>
+  rows: Array<{ id: number }>
+  modelName: string
+  onReload: () => void
+  onPageSizeChange: (size: number) => void
+  showSizeChanger: boolean
+  showReload: boolean
+  showSettings: boolean
+  showPagination: boolean
 }>();
 
-const rowColumns = computed(() => props.columns?.map((column) => column.value));
+const rowColumns = computed(() => props.columns?.map(column => column.value));
 
 const selectedColumns = ref(['name', 'hostname', 'ip']);
 
-const sort = ref<null|string>(null);
+const sort = ref<null | string>(null);
 const pageSize = ref<number>(25);
 
 function updatePageSize(size: number) {
@@ -35,12 +38,12 @@ function updatePageSize(size: number) {
   if (Object.keys(query).includes('page_size')) {
     query.page_size = size;
   } else {
-    // @ts-ignore
+    // @ts-expect-error
     query = { ...query, page_size: size };
   }
   console.log('PUSH', { path: route.path, query });
   useRouter().push({ path: route.path, query });
-  
+
   props.onPageSizeChange(size);
 }
 
@@ -58,20 +61,20 @@ function updateSort(value: string) {
     <div class="w-full my-2 gap-2 flex justify-end">
       <span v-if="showSizeChanger" class="border rounded-md dark:border-slate-500">
         <button
-          @click="updatePageSize(25)"
           class="px-1 rounded-md dark:hover:bg-slate-600"
+          @click="updatePageSize(25)"
         >
           25
         </button>
         <button
-          @click="updatePageSize(50)"
           class="px-1 rounded-md dark:hover:bg-slate-600"
+          @click="updatePageSize(50)"
         >
           50
         </button>
         <button
-          @click="updatePageSize(100)"
           class="px-1 rounded-md dark:hover:bg-slate-600"
+          @click="updatePageSize(100)"
         >
           100
         </button>
@@ -87,14 +90,14 @@ function updateSort(value: string) {
           <h2 class="px-2 py-1 text-2xl">Columns</h2>
         </template>
         <template #default>
-          <InputCheckboxGroup :fields="columns" v-model="selectedColumns"/>
+          <InputCheckboxGroup v-model="selectedColumns" :fields="columns"/>
         </template>
       </DialogBtn>
     </div>
     <table class="w-full">
       <thead>
         <tr class="font-semibold text-left">
-          <th v-for="column in columns" :key="column.value" v-show="selectedColumns.includes(column.value)" class="border h-10 border-slate-300 dark:border-slate-700">
+          <th v-for="column in columns" v-show="selectedColumns.includes(column.value)" :key="column.value" class="border h-10 border-slate-300 dark:border-slate-700">
             <button v-if="column.sortable" class="w-full text-left px-2 py-1 flex justify-between" @click="updateSort(column.value)">
               <span>
                 {{ column.label }}
@@ -112,7 +115,7 @@ function updateSort(value: string) {
         </tr>
       </thead>
       <tbody>
-        <ListRow v-for="row in rows" :row="row" :columns="rowColumns" :active-columns="selectedColumns" :key="row.id" :href="`${modelName}/${row.id}`"/>
+        <ListRow v-for="row in rows" :key="row.id" :row="row" :columns="rowColumns" :active-columns="selectedColumns" :href="`${modelName}/${row.id}`"/>
       </tbody>
     </table>
     <ListPaginator v-if="showPagination" :count="100" :per-page="5"/>

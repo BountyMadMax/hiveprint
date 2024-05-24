@@ -17,15 +17,15 @@ function closeDialog() {
   <dialog :id="uid" class="bg-slate-100 dark:bg-slate-800 text-white min-w-96 min-h-48 rounded-md">
     <div class="flex bg-slate-700">
       <span class="w-full">
-        <slot name="header"></slot>
+        <slot name="header"/>
       </span>
 
-      <button @click="closeDialog" class="rounded-md p-1 dark:hover:bg-slate-600">
+      <button class="rounded-md p-1 dark:hover:bg-slate-600" @click="closeDialog">
         <X class="h-4"/>
       </button>
     </div>
     <div>
-      <slot></slot>
+      <slot/>
     </div>
   </dialog>
 </template>

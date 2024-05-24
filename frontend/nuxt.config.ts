@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-// eslint-disable-next-line no-undef
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
@@ -12,19 +12,19 @@ export default defineNuxtConfig({
   },
 
   alias: {
-    "models": "../models",
-    "~/models/*": "../models/*",
-    "utils": "../utils",
-    "hp-types": "../types/index.d.ts"
+    'models': '../models',
+    '~/models/*': '../models/*',
+    'utils': '../utils',
+    'hp-types': '../types/index.d.ts',
   },
 
   app: {
     head: {
-      link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }]
-    }
+      link: [{ rel: 'icon', type: 'image/png', href: '/icon.png' }],
+    },
   },
 
-  modules: ["@nuxt/eslint"],
+  modules: ['@nuxt/eslint'],
 
-  eslint: {}
+  eslint: {},
 })

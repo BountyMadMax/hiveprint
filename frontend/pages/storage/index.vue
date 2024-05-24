@@ -1,11 +1,13 @@
 <script setup>
 import { storage as StorageProto } from '~/models/storage';
 
-let rows = ref([]);
+const rows = ref([]);
 // Use slice as a dirty workaround to remove toJSON.
 const columns = Object.keys(StorageProto.Storage.prototype)
   .slice(0, -1)
-  .map((column) => { return { label: column, value: column, sortable: column == 'name' || column == 'hostname' } });
+  .map((column) => {
+    return { label: column, value: column, sortable: column == 'name' || column == 'hostname' }
+  });
 
 useHead({
   title: 'Storages | HivePrint',
@@ -44,7 +46,7 @@ function loadStorages() {
 }
 
 /** @type {import('vue').Ref<null|string>} */
-let error = ref(null);
+const error = ref(null);
 </script>
 
 <template>

@@ -2,20 +2,20 @@
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next';
 
 const props = defineProps<{
-  count: number,
-  perPage: number,
+  count: number
+  perPage: number
 }>();
 
 const route = useRoute();
 
-let currentPage = computed(() => route.query['page'] ?? 0);
+const currentPage = computed(() => route.query['page'] ?? 0);
 const lastPage = computed(() => Math.ceil(props.count / props.perPage));
 
-let pageNumbers = computed(() => Array.from(
+const pageNumbers = computed(() => Array.from(
   Array(lastPage.value > 5 ? 5 : lastPage.value),
   (_, i) => {
     return currentPage.value <= 2 ? i : currentPage.value >= lastPage.value - 2 ? lastPage.value - (5 - i) : i + (currentPage.value - 2)
-  }
+  },
 ));
 
 function linkHref(pageNumber) {

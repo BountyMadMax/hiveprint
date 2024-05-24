@@ -6,14 +6,14 @@ defineProps({ required: Boolean, messages: Array });
   <div class="w-fit">
     <label class="cursor-pointer">
       <div>
-        <slot></slot>
+        <slot/>
         <span v-if="required" class="text-red-600 dark:text-red-500 select-none"">*</span>
       </div>
       <input
         v-bind="$attrs"
         type="text"
         class="bg-transparent border-b-2 cursor-auto focus-visible:outline-none border-slate-200 dark:border-slate-700 focus-visible:border-slate-300 dark:focus-visible:border-slate-600 disabled:border-gray-100 dark:disabled:border-gray-800"
-      />
+      >
     </label>
     <div class="flex flex-col gap-1 text-sm w-full p-1">
       <div

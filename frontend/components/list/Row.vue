@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 defineProps<{
-  row: { id: number },
-  columns: string[],
-  activeColumns: string[],
-  href: string,
+  row: { id: number }
+  columns: string[]
+  activeColumns: string[]
+  href: string
 }>();
 </script>
 
