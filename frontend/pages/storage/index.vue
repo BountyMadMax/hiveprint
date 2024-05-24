@@ -35,12 +35,24 @@ function loadStorages() {
     } else {
       console.warn('NOT ArrayBuffer');
     }
+  }).catch((reason) => {
+    if (reason.name) {
+      error.value = reason.name;
+    } else {
+      error.value = 'An unknown error occured';
+    }
   });
 }
+
+/** @type {import('vue').Ref<null|string>} */
+let error = ref(null);
 </script>
 
 <template>
   <h1 class="m-4">Storages</h1>
+  <NotificationError v-if="error">
+    {{ error }}
+  </NotificationError>
   <List
     :columns="columns"
     :rows="rows"
@@ -49,5 +61,9 @@ function loadStorages() {
     class="mx-4"
     :on-reload="loadStorages"
     :on-page-size-change="loadStorages"
+    :show-settings="true"
+    :show-reload="true"
+    :show-pagination="true"
+    :show-size-changer="true"
   />
 </template>

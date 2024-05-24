@@ -30,7 +30,7 @@ useHead({
             </NavbarGroup>
           </ul>
           <ul class="mt-auto">
-            <NavbarItem href="/">
+            <NavbarItem href="/settings">
               <Settings/>
               <span>Settings</span>
             </NavbarItem>

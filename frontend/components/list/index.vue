@@ -1,36 +1,18 @@
 <script setup>
 import { ChevronDown, ChevronsUpDown, ChevronUp, RotateCw, Settings } from 'lucide-vue-next';
 
-/**
- * @typedef Props
- * @property {import('hp-types').Compontent.List.Columns} columns
- * @property {import('hp-types').Compontent.List.Columns} columnsAvailable
- * @property {import('hp-types').Compontent.List.Rows} rows
- * @property {string} modelName
- * @property {() => void} onReload
- * @property {(size: number) => void} onPageSizeChange
- * @property {boolean} showSizeChanger
- * @property {boolean} showReload
- * @property {boolean} showSettings
- * @property {boolean} showPagination
- */
-
-/**
- * @type {Props}
- */
-// @ts-ignore
-const props = defineProps([
-  'columns',
-  'columnsAvailable',
-  'rows',
-  'modelName',
-  'onReload',
-  'onPageSizeChange',
-  'showSizeChanger',
-  'showReload',
-  'showSettings',
-  'showPagination'
-]);
+const props = defineProps({
+  columns: Array,
+  columnsAvailable: Array,
+  rows: Array,
+  modelName: String,
+  onReload: Function,
+  onPageSizeChanger: Function,
+  showSizeChanger: { type: Boolean, default: true },
+  showReload: { type: Boolean, default: true },
+  showSettings: { type: Boolean, default: true },
+  showPagination: { type: Boolean, default: true },
+});
 
 const rowColumns = computed(() => props.columnsAvailable?.map((column) => column.value));
 

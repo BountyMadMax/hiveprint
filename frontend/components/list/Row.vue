@@ -1,14 +1,11 @@
 <script setup>
 
-/**
- * @type {{ row: object, columns: string[], activeColumns: string[], href: string }}
- */
-defineProps([
-  'row',
-  'columns',
-  'activeColumns',
-  'href'
-]);
+defineProps({
+  row: Object,
+  columns: Array,
+  activeColumns: Array,
+  href: String
+});
 </script>
 
 <template>
