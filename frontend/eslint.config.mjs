@@ -1,13 +1,9 @@
-// @ts-check
-/* import withNuxt from './.nuxt/eslint.config.mjs' */
+// @ts-ignore
+import withNuxt from './.nuxt/eslint.config.mjs'
 import eslintConfigPrettier from 'eslint-config-prettier';
 import js from '@eslint/js';
 
-/* export default withNuxt(
-  // Your custom configs here
-  eslintConfigPrettier,
-) */
-export default [
+export default withNuxt [
   js.configs.recommended,
   eslintConfigPrettier,
   {
