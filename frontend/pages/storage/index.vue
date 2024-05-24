@@ -1,10 +1,9 @@
 <script setup>
 import { storage as StorageProto } from '~/models/storage';
 
-const columns = [{ label: 'id', value: 'id' }, { label: 'Hostname', value: 'hostname' }];
 let rows = ref([]);
 // Use slice as a dirty workaround to remove toJSON.
-const columnsAvailable = Object.keys(StorageProto.Storage.prototype)
+const columns = Object.keys(StorageProto.Storage.prototype)
   .slice(0, -1)
   .map((column) => { return { label: column, value: column, sortable: column == 'name' || column == 'hostname' } });
 
@@ -56,7 +55,6 @@ let error = ref(null);
   <List
     :columns="columns"
     :rows="rows"
-    :columns-available="columnsAvailable"
     model-name="storage"
     class="mx-4"
     :on-reload="loadStorages"

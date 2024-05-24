@@ -1,5 +1,10 @@
-<script setup>
-defineProps({ href: String, active: { type: Boolean, default: false }, current: { type: Boolean, default: false } });
+<script setup lang="ts">
+
+defineProps<{
+  href: string,
+  active: boolean,
+  current: boolean,
+}>()
 </script>
 
 <template>

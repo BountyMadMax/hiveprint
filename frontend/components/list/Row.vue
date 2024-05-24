@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 
-defineProps({
-  row: Object,
-  columns: Array,
-  activeColumns: Array,
-  href: String
-});
+defineProps<{
+  row: { id: number },
+  columns: string[],
+  activeColumns: string[],
+  href: string,
+}>();
 </script>
 
 <template>

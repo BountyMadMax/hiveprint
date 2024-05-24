@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { ChevronDown, ChevronUp } from 'lucide-vue-next';
 
-defineProps({ href: String });
+defineProps<{ href: string }>();
 
 const open = ref(false);
 

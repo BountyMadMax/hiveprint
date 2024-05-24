@@ -2,6 +2,7 @@
   "compilerOptions": {
     "checkJs": true,
     "noEmit": true,
+    "isolatedModules": true,
   },
   "exclude": ["./models/*.js"],
   // https://nuxt.com/docs/guide/concepts/typescript

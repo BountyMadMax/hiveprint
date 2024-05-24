@@ -1,7 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next';
 
-const props = defineProps({ count: Number, perPage: Number })
+const props = defineProps<{
+  count: number,
+  perPage: number,
+}>();
 
 const route = useRoute();
 

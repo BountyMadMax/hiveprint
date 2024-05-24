@@ -1,5 +1,5 @@
-<script setup>
-defineProps({ href: String })
+<script setup lang="ts">
+defineProps<{ href: string }>();
 </script>
 
 <template>

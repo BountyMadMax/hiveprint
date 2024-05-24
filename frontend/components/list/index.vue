@@ -1,33 +1,35 @@
-<script setup>
+<script setup lang="ts">
 import { ChevronDown, ChevronsUpDown, ChevronUp, RotateCw, Settings } from 'lucide-vue-next';
 
-const props = defineProps({
-  columns: Array,
-  columnsAvailable: Array,
-  rows: Array,
-  modelName: String,
-  onReload: Function,
-  onPageSizeChanger: Function,
-  showSizeChanger: { type: Boolean, default: true },
-  showReload: { type: Boolean, default: true },
-  showSettings: { type: Boolean, default: true },
-  showPagination: { type: Boolean, default: true },
-});
+interface Columns {
+  value: string,
+  label: string,
+  sortable?: boolean
+}
 
-const rowColumns = computed(() => props.columnsAvailable?.map((column) => column.value));
+const props = defineProps<{
+  columns: Array<Columns>,
+  rows: Array<{ id: number }>,
+  modelName: string,
+  onReload: () => void,
+  onPageSizeChange: (size: number) => void,
+  showSizeChanger: boolean,
+  showReload: boolean,
+  showSettings: boolean,
+  showPagination: boolean,
+}>();
+
+const rowColumns = computed(() => props.columns?.map((column) => column.value));
 
 const selectedColumns = ref(['name', 'hostname', 'ip']);
-/** @type {import('vue').Ref<null|string>} */
-const sort = ref(null);
-const pageSize = ref(25);
 
-/** @param {Number} size */
-function updatePageSize(size) {
+const sort = ref<null|string>(null);
+const pageSize = ref<number>(25);
+
+function updatePageSize(size: number) {
   pageSize.value = size;
 
-  /** @type {import('vue-router').RouteLocationNormalizedLoaded } */
   const route = useRoute();
-  /** @type {import('vue-router').LocationQuery&{ page_size?: number }} */
   let query = route.query;
 
   if (Object.keys(query).includes('page_size')) {
@@ -42,8 +44,7 @@ function updatePageSize(size) {
   props.onPageSizeChange(size);
 }
 
-/** @param {string} value */
-function updateSort(value) {
+function updateSort(value: string) {
   if (sort.value === value) {
     sort.value = `-${value}`;
   } else {
@@ -86,14 +87,14 @@ function updateSort(value) {
           <h2 class="px-2 py-1 text-2xl">Columns</h2>
         </template>
         <template #default>
-          <InputCheckboxGroup :fields="columnsAvailable" v-model="selectedColumns"/>
+          <InputCheckboxGroup :fields="columns" v-model="selectedColumns"/>
         </template>
       </DialogBtn>
     </div>
     <table class="w-full">
       <thead>
         <tr class="font-semibold text-left">
-          <th v-for="column in columnsAvailable" :key="column.value" v-show="selectedColumns.includes(column.value)" class="border h-10 border-slate-300 dark:border-slate-700">
+          <th v-for="column in columns" :key="column.value" v-show="selectedColumns.includes(column.value)" class="border h-10 border-slate-300 dark:border-slate-700">
             <button v-if="column.sortable" class="w-full text-left px-2 py-1 flex justify-between" @click="updateSort(column.value)">
               <span>
                 {{ column.label }}
