@@ -3,20 +3,11 @@ use axum::{
 };
 use hiveprint::establish_connection;
 use http::Method;
-use tower_http::{cors::{Any, CorsLayer}, trace::{DefaultMakeSpan, TraceLayer}};
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+use tower_http::cors::{Any, CorsLayer};
 use prost::Message;
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::registry()
-        .with(
-            tracing_subscriber::EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| "hiveprint=debug,tower_http=debug".into()),
-        )
-        .with(tracing_subscriber::fmt::layer())
-        .init();
-
     let app = Router::new()
         .route("/ws", get(hiveprint::ws::handler::ws_handler))
         .route("/", get(|| async { "Hello, World!" }))
@@ -27,10 +18,6 @@ async fn main() {
             CorsLayer::new()
                 .allow_methods(vec![Method::GET])
                 .allow_origin(Any)
-        )
-        .layer(
-            TraceLayer::new_for_http()
-                .make_span_with(DefaultMakeSpan::default().include_headers(true)),
         );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
