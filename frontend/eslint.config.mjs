@@ -1,12 +1,23 @@
 // @ts-ignore
 import withNuxt from './.nuxt/eslint.config.mjs'
-import eslintConfigPrettier from 'eslint-config-prettier';
-import js from '@eslint/js';
+import style from '@stylistic/eslint-plugin';
 
-export default withNuxt [
-  js.configs.recommended,
-  eslintConfigPrettier,
+export default withNuxt(
   {
-    "ignores": [".nuxt/", ".node_modules/", "models/*.js"]
-  }
-]
+    ignores: ['models/**'],
+  },
+
+  style.configs['recommended-flat'],
+
+  {
+    rules: {
+      '@stylistic/semi': [
+        'off',
+      ],
+      '@stylistic/brace-style': [
+        'error',
+        '1tbs',
+      ],
+    },
+  },
+);

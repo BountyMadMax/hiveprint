@@ -3,8 +3,12 @@
   "private": true,
   "type": "module",
   "repository": "https://github.com/BountyMadMax/hiveprint",
-  "author": { "name": "Yannick Melzer", "url": "https://github.com/BountyMadMax" },
+  "author": {
+    "name": "Yannick Melzer",
+    "url": "https://github.com/BountyMadMax"
+  },
   "license": "GPL-2.0-only",
+  "packageManager": "pnpm@9.1.1",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev -p 5173",
@@ -23,16 +27,16 @@
     "protobufjs": "~7.3.0",
     "socket.io-client": "^4.7.5",
     "vue": "^3.4.27",
+    "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.3.0",
+    "@nuxt/eslint": "^0.3.13",
+    "@stylistic/eslint-plugin": "^2.1.0",
     "@types/eslint": "^8.56.10",
     "@types/eslint__js": "^8.42.3",
-    "@types/eslint-config-prettier": "^6.11.3",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.3.0",
-    "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.38",
     "protobufjs-cli": "~1.1.2",
     "tailwindcss": "^3.4.3",
