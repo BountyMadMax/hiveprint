@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { generateUid } from '~/utils/uid';
 
-const uid = ref(null);
+const uid = ref('');
 
 onMounted(() => {
   uid.value = generateUid();

@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const route = useRoute();
 
-const currentPage = computed(() => route.query['page'] ?? 0);
+const currentPage = computed(() => route.query['page'] ? Number(route.query['page']) : 0);
 const lastPage = computed(() => Math.ceil(props.count / props.perPage));
 
 const pageNumbers = computed(() => Array.from(
@@ -18,7 +18,7 @@ const pageNumbers = computed(() => Array.from(
   },
 ));
 
-function linkHref(pageNumber) {
+function linkHref(pageNumber: number) {
   return `${route.path}?page=${pageNumber}`;
 }
 </script>
@@ -33,7 +33,7 @@ function linkHref(pageNumber) {
         <ChevronLeft class="h-4"/>
       </ListPaginatorLink>
 
-      <ListPaginatorLink v-for="pageNumber in pageNumbers" :href="`${$route.path}?page=${pageNumber}`" active :current="currentPage == pageNumber">
+      <ListPaginatorLink v-for="pageNumber in pageNumbers" :key="pageNumber" :href="`${$route.path}?page=${pageNumber}`" active :current="currentPage == pageNumber">
         <!-- +1 because humans start at 1, but pageNumbers starts at 0 -->
         {{ pageNumber + 1 }}
       </ListPaginatorLink>

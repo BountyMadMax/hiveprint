@@ -36,10 +36,9 @@ function updatePageSize(size: number) {
   let query = route.query;
 
   if (Object.keys(query).includes('page_size')) {
-    query.page_size = size;
+    query.page_size = String(size);
   } else {
-    // @ts-expect-error
-    query = { ...query, page_size: size };
+    query = { ...query, page_size: String(size) };
   }
   console.log('PUSH', { path: route.path, query });
   useRouter().push({ path: route.path, query });
