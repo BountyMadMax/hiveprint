@@ -24,7 +24,22 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
 
   eslint: {},
+
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+      },
+      {
+        code: 'de',
+        iso: 'de-DE',
+      },
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+  },
 })
