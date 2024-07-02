@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package storage;
 
+option go_package = "protos/storage";
+
 // Storage model.
 message Storage {
   int32 id = 1;
@@ -29,14 +31,10 @@ enum ProtocolVersion {
   PROTOCOL_VERSION_5 = 4;
 }
 
-message StorageList {
-  repeated Storage storages = 1;
-}
+message StorageList { repeated Storage storages = 1; }
 
 // HTTP:
-message StorageQueryResponse {
-  repeated Storage results = 1;
-}
+message StorageQueryResponse { repeated Storage results = 1; }
 
 // WebSocket:
 message WebSocketStorage {
