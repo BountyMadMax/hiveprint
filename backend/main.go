@@ -18,5 +18,7 @@ func main() {
 	})
 	engine.GET("/storages", controllers.GetStorages)
 
-	engine.Run()
+	engine.SetTrustedProxies([]string{"0.0.0.0/5137"})
+
+	engine.Run(":3000")
 }

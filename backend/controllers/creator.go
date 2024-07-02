@@ -7,9 +7,9 @@ import (
 	"net/http"
 )
 
-func GetStorages(c *gin.Context) {
-	var storages []protos.Storage
-	models.DB.Find(&storages)
+func GetCreators(c *gin.Context) {
+	var creators []protos.Creator
+	models.DB.Find(&creators)
 
-	c.JSON(http.StatusOK, gin.H{"data": storages})
+	c.JSON(http.StatusOK, gin.H{"data": creators})
 }
