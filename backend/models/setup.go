@@ -15,6 +15,11 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
+	err = database.AutoMigrate(&protos.StorageCredentials{})
+	if err != nil {
+		return
+	}
+
 	err = database.AutoMigrate(&protos.Storage{})
 	if err != nil {
 		return
