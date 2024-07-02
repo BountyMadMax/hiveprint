@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package models;
 
+import "options/gorm.proto";
+
 option go_package = "models/protos";
 
 message Model {
@@ -62,6 +64,7 @@ enum CreatorLinkType {
 }
 
 message Storage {
+  option (gorm.opts).ormable = true;
   int32 id = 1;
   string name = 2;
   optional string description = 3;
@@ -79,12 +82,13 @@ enum StorageReferenceProtocol {
 }
 
 message StorageLocation {
-  optional string ip = 2;
+  optional gorm.types.InetValue ip = 2;
   optional string hostname = 3;
   optional string path = 4;
 }
 
 message StorageCredentials {
+  option (gorm.opts).ormable = true;
   int32 id = 1;
   string user = 2;
   optional string password = 3;

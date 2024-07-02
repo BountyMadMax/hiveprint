@@ -25,17 +25,17 @@ func ConnectDatabase() {
 		return
 	}
 
-	err = database.AutoMigrate(&protos.Model{})
+	//err = database.AutoMigrate(&protos.Model{})
 	if err != nil {
 		return
 	}
 
-	err = database.AutoMigrate(&protos.ModelPart{})
+	//err = database.AutoMigrate(&protos.ModelPart{})
 	if err != nil {
 		return
 	}
 
-	err = database.AutoMigrate(&protos.Creator{})
+	//err = database.AutoMigrate(&protos.Creator{})
 	if err != nil {
 		return
 	}
