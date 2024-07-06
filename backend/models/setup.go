@@ -15,27 +15,27 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
-	err = database.AutoMigrate(&protos.StorageCredentials{})
+	err = database.AutoMigrate(&protos.StorageCredentialsORM{})
 	if err != nil {
 		return
 	}
 
-	err = database.AutoMigrate(&protos.Storage{})
+	err = database.AutoMigrate(&protos.StorageORM{})
 	if err != nil {
 		return
 	}
 
-	//err = database.AutoMigrate(&protos.Model{})
+	err = database.AutoMigrate(&protos.ModelORM{})
 	if err != nil {
 		return
 	}
 
-	//err = database.AutoMigrate(&protos.ModelPart{})
+	err = database.AutoMigrate(&protos.ModelPartORM{})
 	if err != nil {
 		return
 	}
 
-	//err = database.AutoMigrate(&protos.Creator{})
+	err = database.AutoMigrate(&protos.CreatorORM{})
 	if err != nil {
 		return
 	}
