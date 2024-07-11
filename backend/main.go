@@ -17,6 +17,8 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
 	})
 	engine.GET("/storages", controllers.GetStorages)
+	engine.GET("/storages/:id", controllers.GetStorage)
+	engine.POST("/storages/new", controllers.NewStorage)
 
 	engine.SetTrustedProxies([]string{"0.0.0.0/5137"})
 
