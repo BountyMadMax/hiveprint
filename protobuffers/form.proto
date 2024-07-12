@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package form;
+
+option go_package = "models/proto";
+
+message FormOptions {
+  boolean required = 1;
+  boolean disabled = 2;
+  boolean read_only = 3;
+  boolean visible = 4;
+  repeated FormValidation validations = 5;
+}
+
+message FormValidation {
+  string message = 1;
+  FormValidationType type = 2;
+}
+
+enum FormValidationType {
+  ERROR = 0;
+  WARNING = 1;
+  INFO = 2;
+}
