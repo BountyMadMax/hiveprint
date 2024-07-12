@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "models/proto";
+
+import "options/gorm.proto";
+
+message User {
+  option (gorm.opts).ormable = true;
+  int32 id = 1;
+  string name = 2;
+  bool active = 3;
+  string email = 4;
+  string password = 5;
+  optional string avatar = 6;
+  repeated Role roles = 7;
+}
+
+message Role {
+  option (gorm.opts).ormable = true;
+  int32 id = 1;
+  string name = 2;
+  repeated Permission permissions = 3;
+}
+
+message Permission {
+  option (gorm.opts).ormable = true;
+  int32 id = 1;
+  string key = 2;
+}

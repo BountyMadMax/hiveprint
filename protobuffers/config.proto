@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package config;
+
+option go_package = "models/protos";
+
+import "options/gorm.proto";
+import "auth.proto";
+
+message Config {
+  option (gorm.opts).ormable = true;
+  int32 id = 1;
+  string key = 2;
+  string value = 3;
+}
+
+message UserConfig {
+  option (gorm.opts).ormable = true;
+  int32 id = 1;
+  User user = 2;
+  string key = 3;
+  string value = 4;
+}

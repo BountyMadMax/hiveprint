@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package models;
 
+option go_package = "models/protos";
+
 import "options/gorm.proto";
 import "types/types.proto";
-
-option go_package = "models/protos";
 
 message Model {
   option (gorm.opts).ormable = true;
