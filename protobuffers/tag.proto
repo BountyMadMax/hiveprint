@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package tags;
+package tag;
 
 option go_package = "models/protos";
-
-import "options/gorm.proto";
 
 message Tag {
   int32 id = 1;

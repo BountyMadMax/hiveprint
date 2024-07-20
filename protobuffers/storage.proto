@@ -16,7 +16,7 @@ message Storage {
   StorageCredentials credentials = 5;
   string location = 6;
   StorageLocationType location_type = 7;
-  repeated Tag tags = 8;
+  repeated tag.Tag tags = 8;
 }
 
 enum StorageProtocol {

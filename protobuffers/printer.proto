@@ -12,7 +12,7 @@ message Company {
   int32 id = 1;
   string name = 2;
   optional string description = 3;
-  repeated Tag tags = 4;
+  repeated tag.Tag tags = 4;
 }
 
 message PrinterModel {
@@ -138,8 +138,8 @@ message PrinterModelConnectivity {
 }
 
 enum PrinterModelConnectivityType {
-  LAN = 0;
-  WIFI = 1;
+  CONNECTIVITY_LAN = 0;
+  CONNECTIVITY_WIFI = 1;
 }
 
 // Allows us to know how to connect to the printer.
