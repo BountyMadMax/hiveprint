@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.1.0",
+    "lucide-static": "^0.460.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}

@@ -23,7 +23,15 @@ func render(ctx echo.Context, status int, t templ.Component) error {
 func main() {
 	e := echo.New()
 
+	// HTMX
 	e.File("/static/js/htmx.min.js", "static/js/htmx.min.js")
+	// CSS
+	e.File("/static/css/main.css", "static/css/main.css")
+	// Font
+	e.File("/static/font/inter.css", "node_modules/@fontsource-variable/inter/index.css")
+	e.Static("/static/font/files/", "node_modules/@fontsource-variable/inter/files/")
+	// Icons
+	e.Static("/static/icons/", "node_modules/lucide-static/font/")
 
 	e.GET("/", func(c echo.Context) error {
 		return render(c, http.StatusOK, views.Index())
