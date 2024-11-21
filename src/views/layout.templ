@@ -1,6 +1,6 @@
 package views
 
-templ Index() {
+templ Layout() {
   <!DOCTYPE html>
   <html>
     <head>
@@ -9,18 +9,18 @@ templ Index() {
       <link rel="stylesheet" href="/static/font/inter.css">
       <link rel="stylesheet" href="/static/icons/lucide.css">
     </head>
-    <body class="grid grid-rows-[min-content_auto] text-white bg-slate-950 h-dvh">
+    <body class="grid grid-rows-[min-content_auto] text-white bg-slate-950 h-dvh" hx-target="main" hx-boost="true">
       <header class="bg-slate-600 h-min">
-        <span class="text-xl font-bold p-4 block">
+        <a href="/" class="text-xl font-bold p-4 block">
           HivePrint
-        </span>
+        </a>
       </header>
       <div class="flex h-full">
         <aside class="bg-slate-700">
           <nav>
             <ul class="list-none">
               <li>
-                <a href="#" class="py-2 px-4 block hover:bg-slate-600">First</a>
+                <a href="/models/1" class="py-2 px-4 block hover:bg-slate-600">Models</a>
               </li>
               <li>
                 <a href="#" class="py-2 px-4 block hover:bg-slate-600">Second</a>
@@ -45,8 +45,8 @@ templ Index() {
             </ul>
           </nav>
         </aside>
-        <main class="bg-slate-800 w-full">
-          Main
+        <main hx-boost="false" class="bg-slate-800 w-full">
+          { children... }
         </main>
       </div>
 
