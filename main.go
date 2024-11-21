@@ -7,10 +7,35 @@ import (
 
 	"github.com/a-h/templ"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
-func render(ctx echo.Context, status int, t templ.Component) error {
-	ctx.Response().Writer.WriteHeader(status)
+func main() {
+	e := echo.New()
+
+	// Middleware
+
+	e.Use(middleware.Secure())
+
+	// Routes
+
+	addStaticFiles(e)
+
+	e.GET("/", func(c echo.Context) error {
+		return render(c, http.StatusOK, views.Index())
+	})
+	e.GET("/setup", func(c echo.Context) error {
+		return render(c, http.StatusOK, views.Index())
+	})
+
+	// Start
+
+	e.Logger.Fatal(e.Start(":8080"))
+}
+
+// Renders the given templ.Component.
+func render(ctx echo.Context, HTTPStatus int, t templ.Component) error {
+	ctx.Response().Writer.WriteHeader(HTTPStatus)
 
 	err := t.Render(context.Background(), ctx.Response().Writer)
 	if err != nil {
@@ -20,9 +45,7 @@ func render(ctx echo.Context, status int, t templ.Component) error {
 	return nil
 }
 
-func main() {
-	e := echo.New()
-
+func addStaticFiles(e *echo.Echo) {
 	// HTMX
 	e.File("/static/js/htmx.min.js", "static/js/htmx.min.js")
 	// CSS
@@ -32,10 +55,4 @@ func main() {
 	e.Static("/static/font/files/", "node_modules/@fontsource-variable/inter/files/")
 	// Icons
 	e.Static("/static/icons/", "node_modules/lucide-static/font/")
-
-	e.GET("/", func(c echo.Context) error {
-		return render(c, http.StatusOK, views.Index())
-	})
-
-	e.Logger.Fatal(e.Start(":8080"))
 }
