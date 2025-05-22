@@ -29,7 +29,7 @@ func Layout() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"description\" content=\"HivePrint is a management software for everything related to printing.\"><title>HivePrint</title><script src=\"/static/js/htmx.min.js\"></script><link rel=\"stylesheet\" href=\"/static/css/main.css\"><link rel=\"stylesheet\" href=\"/static/font/inter.css\"><link rel=\"stylesheet\" href=\"/static/icons/lucide.css\"></head><body class=\"grid grid-rows-[min-content_auto] text-white bg-slate-950 h-dvh\" hx-target=\"main\" hx-boost=\"true\"><header class=\"bg-slate-600 h-min\"><a href=\"/\" class=\"text-xl font-bold p-4 w-fit block\">HivePrint</a></header><div class=\"flex h-full\"><aside class=\"bg-slate-700\"><nav><ul class=\"list-none\"><li><a href=\"/models\" class=\"py-2 px-4 block hover:bg-slate-600\">Models</a></li><li><a href=\"#\" class=\"py-2 px-4 block hover:bg-slate-600\">Second</a></li><li><a href=\"#\" class=\"py-2 px-4 block hover:bg-slate-600\">Third</a></li></ul><ul class=\"list-none\"><li><details><summary class=\"flex list-none after:content-[&#39;\\e073&#39;] after:font-[lucide] after:cursor-pointer after:flex after:items-center after:px-1 hover:after:bg-slate-600\"><a href=\"#\" class=\"hover:bg-slate-600 py-2 px-4\">Settings</a></summary><ul class=\"list-none\"><li><a href=\"#\" class=\"py-2 pl-6 pr-4 block hover:bg-slate-600\">Hello</a></li></ul></details></li></ul></nav></aside><main hx-boost=\"false\" class=\"bg-slate-800 w-full overflow-scroll\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -37,7 +37,7 @@ func Layout() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 2)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</main></div><style>\n        details[open] > summary::after,\n        details[open] > summary:hover::after {\n          content: \"\\e071\";\n        }\n      </style></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

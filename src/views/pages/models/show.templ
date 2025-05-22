@@ -1,5 +1,15 @@
 package models
 
-templ Show() {
-  Hello World
+import "hiveprint/src/models"
+import "fmt"
+
+templ Show(model models.Model) {
+  <div>
+    <div>{ model.Name }</div>
+    <div>{ model.Description }</div>
+  </div>
+
+  <button hx-delete={ string(templ.URL(fmt.Sprintf("/models/%v", model.ID))) } class="rounded-sm px-4 py-2 bg-red-600">
+    Delete
+  </button>
 }
